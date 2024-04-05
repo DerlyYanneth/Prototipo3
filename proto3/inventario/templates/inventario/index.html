@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p><strong>Hola, {{ nombre }} </strong></p>
+    <div id="botones"> <!-- Inicia un contenedor con el id "botones" -->
+        <button>Gráfica 1</button> <!-- Creación de botones -->
+        <button>Gráfica 2</button>
+        <button>Mostrar Todas</button>
+    </div>
+    
+    <!-- Gráficas -->
+    <div class="grafico" style="display: none;"> <!-- Inicia un contenedor con la clase "grafico" y oculto -->
+        <!-- Contenido de la primera gráfica -->
+        {{ grafica|safe }} <!-- Muestra el contenido de la variable "grafica" de forma segura -->
+    </div>
+    <div class="grafico" style="display: none;">
+        <!-- Contenido de la segunda gráfica -->
+        {{ me|safe }}
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Obtiene los botones y las gráficas
+            var botones = document.querySelectorAll("#botones button"); // Selecciona todos los botones dentro del elemento con id "botones"
+            var graficas = document.querySelectorAll(".grafico, .me"); // Selecciona todos los elementos con la clase "grafico" o "me"
+            
+            // Función para mostrar todos los gráficos
+            function mostrarTodos() {
+                graficas.forEach(function(grafica) { // Itera sobre cada gráfica
+                    grafica.style.display = "block"; // Establece el estilo de visualización como "block" para mostrar la gráfica
+                });
+            }
+            
+            // Itera sobre cada botón
+            botones.forEach(function(boton, index) {
+                boton.addEventListener("click", function() { // Agrega un evento de clic a cada botón
+                    // Oculta todas las gráficas
+                    graficas.forEach(function(grafica) { // Itera sobre cada gráfica
+                        grafica.style.display = "none"; // Establece el estilo de visualización como "none" para ocultar la gráfica
+                    });
+                    
+                    // Restaura los estilos de todos los botones
+                    botones.forEach(function(b) { // Itera sobre cada botón
+                        b.style.backgroundColor = "#8A2BE2"; // Restaura el color de fondo
+                        b.style.color = "#FFFFFF"; // Restaura el color del texto
+                    });
+                    
+                    // Muestra la gráfica correspondiente al botón clickeado
+                    if (index === botones.length - 1) { // Si se hizo clic en el último botón
+                        mostrarTodos(); // Muestra todas las gráficas
+                    } else {
+                        graficas[index].style.display = "block"; // Muestra la gráfica correspondiente al índice del botón clickeado
+                    }
+                    
+                    // Cambia los estilos del botón clickeado
+                    boton.style.setProperty('background-color', '#ffffff', 'important'); // Establece el color de fondo del botón clickeado
+                    boton.style.color = "#14c5049a"; // Establece el color del texto del botón clickeado
+                });
+            });
+        });
+    </script>
+</body>
+</html>
