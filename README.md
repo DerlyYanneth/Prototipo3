@@ -9,7 +9,7 @@
    - Ejecuta el siguiente comando para clonar el repositorio:
 
      ```
-     git clone 
+     git clone https://github.com/DerlyYanneth/Prototipo3
      ```
 
    - Esto descargará una copia local del repositorio en tu máquina.
@@ -19,7 +19,7 @@
    - Ve al directorio del repositorio clonado:
 
      ```
-     cd 
+     cd Prototipo3
      ```
 
    - Inicia el servidor de desarrollo de Django ejecutando el siguiente comando:
